@@ -1,0 +1,40 @@
+:root {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --accent-text-color1: #F77F00;
+}
+
+@font-face {
+    font-family: "IBM VGA";
+    src: url("assets/WebPlus_IBM_VGA_9x16.woff");
+    font-weight: 400;
+}
+
+* {
+    font-family: "IBM VGA";
+    font-size: 22px;
+    color: var(--text-color);
+    
+}
+
+body {
+    margin: 10px 0 0 10px;
+    font-family: "IBM VGA";
+    background-color: var(--background-color);
+}
+
+.λ {
+    color: var(--accent-text-color1);;
+}
+
+.neofetch {
+    display: flex;
+}
+
+.neofetch-icon {
+    margin-right: 10px;
+width: 250px;
+    white-space: pre;
+
+    background-color: rgb(36, 36, 36);
+}
