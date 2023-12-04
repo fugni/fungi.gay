@@ -99,14 +99,18 @@ body {
     margin-left: 5px;
 }
 
-@media screen and (min-width: 602px) {
-    .responsive {
-        display: none;
-    }
+.terminal {
+    display: flex;
 }
 
 .terminal input {
     background-color: var(--background-color);
     border: none;
     outline: none;
+}
+
+@media screen and (min-width: 602px) {
+    .responsive {
+        display: none;
+    }
 }
