@@ -22,11 +22,7 @@ body {
     background-color: var(--background-color);
 }
 
-.λ {
-    color: var(--accent-text-color1);
-}
-
-.accents {
+.λ, .accents {
     color: var(--accent-text-color1);
 }
 
@@ -54,6 +50,14 @@ body {
 
 .neofetch-txt-row {
     display: flex;
+}
+
+.neofetch-txt-row a {
+    text-decoration: none;
+}
+
+.flags {
+    flex-wrap: wrap;
 }
 
 .trans-flag {
@@ -99,4 +103,10 @@ body {
     .responsive {
         display: none;
     }
+}
+
+.terminal input {
+    background-color: var(--background-color);
+    border: none;
+    outline: none;
 }
