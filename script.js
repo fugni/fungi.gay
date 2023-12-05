@@ -24,7 +24,7 @@ function command(command) {
         result.innerHTML += "command \"" + command + "\" not found";
         result.innerHTML += "<br>";
         result.innerHTML += "type \"help\" for a list of commands";
-        result.innerHTML += "<br><br>";
+        result.innerHTML += "<br>";
     } else {
         const commandHtml = new XMLHttpRequest();
         commandHtml.open("GET", "commands/" + command + ".html", false);
@@ -68,7 +68,7 @@ function neofetch() {
     age = Math.floor(age / 1000 / 60 / 60 / 24 / 365);
     ageDiv.innerText = age + " years old";
 
-    const neofetchArt = document.getElementsByClassName('neofetch-art')[0];
+    const neofetchArt = document.getElementsByClassName('neofetch-art')[document.getElementsByClassName('neofetch-art').length - 1];
 
     fetch("ascii.txt")
         .then((res) => res.text())

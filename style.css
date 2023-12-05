@@ -2,7 +2,7 @@
     --background-color:#1b1b1b;
     --text-color: #ffffff;
     --accent-text-color1: #ca99ff;
-    --font-size: 26px;
+    --font-size: 22px;
 }
 
 @font-face {
@@ -108,6 +108,9 @@ body {
     background-color: var(--background-color);
     border: none;
     outline: none;
+    width: 80vw;
+    height: calc(var(--font-size));
+    padding: 0;
 }
 
 @media screen and (min-width: 602px) {
@@ -118,4 +121,8 @@ body {
 
 .result {
     margin-top: calc(var(--font-size) * -1);
+}
+
+.first {
+    margin-top: 0;
 }
