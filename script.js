@@ -1,6 +1,9 @@
 // all commands
 const commands = ["help", "neofetch"];
 
+let commandHistory = [];
+let commandHistoryIndex = 0;
+
 function command(command) {
     // dont do anything if input is empty
     if (command == "") {
@@ -43,7 +46,6 @@ function command(command) {
 
     container.appendChild(newTerminal).focus();
 
-
     // scroll to bottom
     window.scrollTo(0, document.body.scrollHeight);
 
@@ -51,14 +53,45 @@ function command(command) {
     if (commands.includes(command)) {
         eval(command + "();");
     }
+
+    // add command to history
+    commandHistory.unshift(command);
 }
+
+// script for terminal
 
 document.addEventListener("keydown", function(e) {
     const commandInput = document.getElementsByClassName("command-input")[document.getElementsByClassName("command-input").length - 1];
-    commandInput.children[0].focus();
+    
+    // focus on input
+    commandInput.children[commandInput.children.length - 1].focus();
+    // move cursor to end of input
+    commandInput.children[commandInput.children.length - 1].setSelectionRange(commandInput.children[commandInput.children.length - 1].value.length, commandInput.children[commandInput.children.length - 1].value.length);
+
+
     if (e.key == "Enter") {
         command(commandInput.children[commandInput.children.length - 1].value);
     }
+
+    // command history
+    if (e.key == "ArrowUp") {
+        commandInput.children[commandInput.children.length - 1].value = commandHistory[commandHistoryIndex];
+
+        if (commandHistoryIndex < commandHistory.length - 1) {
+            commandHistoryIndex++;
+        }
+    }
+    if (e.key == "ArrowDown") {
+        if (commandHistoryIndex > 0) {
+            commandHistoryIndex--;
+            commandInput.children[commandInput.children.length - 1].value = commandHistory[commandHistoryIndex];
+        } else {
+            commandInput.children[commandInput.children.length - 1].value = "";
+        }
+    }
+
+
+
 });
 
 // script for neofetch
