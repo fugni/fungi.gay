@@ -1,5 +1,5 @@
 // all commands
-const commands = ["help", "neofetch"];
+const commands = ["help", "neofetch", "clear"];
 
 let commandHistory = [];
 let commandHistoryIndex = 0;
@@ -117,4 +117,16 @@ function neofetch() {
 
 function help() {
     // the helpening
+}
+
+function clear() {
+    const container = document.getElementById("container");
+    container.innerHTML = "";
+
+    const newTerminal = document.createElement("div");
+    newTerminal.classList.add("terminal", "first");
+    newTerminal.innerHTML += "<span class='λ'>λ&nbsp;</span>";
+    newTerminal.innerHTML += "<div class='command-input'><input type='text' autofocus></div>";
+
+    container.appendChild(newTerminal).focus();
 }
