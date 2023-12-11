@@ -1,5 +1,5 @@
 // all commands
-const commands = ["help", "neofetch", "clear"];
+const commands = ["help", "neofetch", "clear", "fungi"];
 
 let commandHistory = [];
 let commandHistoryIndex = 0;
@@ -59,7 +59,6 @@ function command(command) {
 }
 
 // script for terminal
-
 document.addEventListener("keydown", function(e) {
     const commandInput = document.getElementsByClassName("command-input")[document.getElementsByClassName("command-input").length - 1];
     
@@ -129,4 +128,8 @@ function clear() {
     newTerminal.innerHTML += "<div class='command-input'><input type='text' autofocus></div>";
 
     container.appendChild(newTerminal).focus();
+}
+
+function fungi() {
+
 }
