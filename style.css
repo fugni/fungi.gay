@@ -126,3 +126,19 @@ body {
 .first {
     margin-top: 0;
 }
+
+.dutch {
+    width: calc(var(--font-size) * 1.5);
+    height: var(--font-size);
+    box-shadow: 0 calc(var(--font-size) / 3 * 1) 0 0 #AD1D25 inset,
+                0 calc(var(--font-size) / 3 * 2) 0 0 #FFFFFF inset,
+                0 calc(var(--font-size) / 3 * 3) 0 0 #1E4785 inset;
+}
+
+.english {
+    height: var(--font-size);
+}
+
+.english img {
+    height: var(--font-size);
+}

@@ -1,3 +1,30 @@
+// loop between flags 
+let flagIndex = 0;
+const flags = ["uk", "usa", "canada"];
+let flagDivs = [];
+
+
+function flagLoop() {
+    // if (document.getElementsByClassName("english-flag")[document.getElementsByClassName("english-flag").length - 1] == undefined) {	
+        flagDivs.push(document.getElementsByClassName("english-flag")[document.getElementsByClassName("english-flag").length - 1]);
+    // }
+    console.log(flagDivs);
+
+    if (flagDivs.length > 1) {
+        flagDivs.forEach(flagDiv => {
+            flagDiv.src = "assets/flags/" + flags[flagIndex] + ".svg";
+        });
+    }
+
+    if (flagIndex < flags.length - 1) {
+        flagIndex++;
+    } else {
+        flagIndex = 0;
+    }
+
+    setTimeout(flagLoop, 1500);
+}
+
 // all commands
 const commands = ["help", "neofetch", "clear", "fungi"];
 
@@ -89,8 +116,6 @@ document.addEventListener("keydown", function(e) {
         }
     }
 
-
-
 });
 
 // script for neofetch
@@ -102,7 +127,7 @@ function neofetch() {
 
     const neofetchArt = document.getElementsByClassName('neofetch-art')[document.getElementsByClassName('neofetch-art').length - 1];
 
-    fetch("ascii.txt")
+    fetch("assets/ascii.txt")
         .then((res) => res.text())
         .then((text) => {
             const lines = text.split('\n');
@@ -128,6 +153,8 @@ function clear() {
     newTerminal.innerHTML += "<div class='command-input'><input type='text' autofocus></div>";
 
     container.appendChild(newTerminal).focus();
+
+    flagDivs = [];
 }
 
 function fungi() {
