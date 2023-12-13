@@ -1,32 +1,5 @@
-// loop between flags 
-let flagIndex = 0;
-const flags = ["uk", "usa", "canada"];
-let flagDivs = [];
-
-
-function flagLoop() {
-    // if (document.getElementsByClassName("english-flag")[document.getElementsByClassName("english-flag").length - 1] == undefined) {	
-        flagDivs.push(document.getElementsByClassName("english-flag")[document.getElementsByClassName("english-flag").length - 1]);
-    // }
-    console.log(flagDivs);
-
-    if (flagDivs.length > 1) {
-        flagDivs.forEach(flagDiv => {
-            flagDiv.src = "assets/flags/" + flags[flagIndex] + ".svg";
-        });
-    }
-
-    if (flagIndex < flags.length - 1) {
-        flagIndex++;
-    } else {
-        flagIndex = 0;
-    }
-
-    setTimeout(flagLoop, 1500);
-}
-
 // all commands
-const commands = ["help", "neofetch", "clear", "fungi"];
+const commands = ["help", "neofetch", "clear", "fungi", "wip"];
 
 let commandHistory = [];
 let commandHistoryIndex = 0;
@@ -50,7 +23,7 @@ function command(command) {
     result.classList.add("result");    
 
     // check if command exists and execute it
-    if (!commands.includes(command)) {
+    if (!commands.includes(command.toLowerCase())) {
         result.innerHTML += "command \"" + command + "\" not found";
         result.innerHTML += "<br>";
         result.innerHTML += "type \"help\" for a list of commands";
@@ -117,46 +90,3 @@ document.addEventListener("keydown", function(e) {
     }
 
 });
-
-// script for neofetch
-function neofetch() {
-    const ageDiv = document.getElementsByClassName('age')[document.getElementsByClassName('age').length - 1];
-    age = Date.now() - new Date(2005, 10, 15);
-    age = Math.floor(age / 1000 / 60 / 60 / 24 / 365);
-    ageDiv.innerText = age + " years old";
-
-    const neofetchArt = document.getElementsByClassName('neofetch-art')[document.getElementsByClassName('neofetch-art').length - 1];
-
-    fetch("assets/ascii.txt")
-        .then((res) => res.text())
-        .then((text) => {
-            const lines = text.split('\n');
-            for (let i = 0; i < 21; i++) {
-                const neofetchArtRow = document.createTextNode(lines[i] + '\n');
-                neofetchArt.appendChild(neofetchArtRow);
-            }
-        })
-        .catch((e) => console.error(e));
-}
-
-function help() {
-    // the helpening
-}
-
-function clear() {
-    const container = document.getElementById("container");
-    container.innerHTML = "";
-
-    const newTerminal = document.createElement("div");
-    newTerminal.classList.add("terminal", "first");
-    newTerminal.innerHTML += "<span class='λ'>λ&nbsp;</span>";
-    newTerminal.innerHTML += "<div class='command-input'><input type='text' autofocus></div>";
-
-    container.appendChild(newTerminal).focus();
-
-    flagDivs = [];
-}
-
-function fungi() {
-
-}
