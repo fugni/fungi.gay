@@ -56,7 +56,7 @@ body {
     text-decoration: none;
 }
 
-.flags {
+.pride-flags {
     flex-wrap: wrap;
 }
 
@@ -135,6 +135,6 @@ body {
                 0 calc(var(--font-size) / 3 * 3) 0 0 #1E4785 inset;
 }
 
-.english img {
+.flag {
     height: var(--font-size);
 }
