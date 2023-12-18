@@ -135,10 +135,6 @@ body {
                 0 calc(var(--font-size) / 3 * 3) 0 0 #1E4785 inset;
 }
 
-.english {
-    height: var(--font-size);
-}
-
 .english img {
     height: var(--font-size);
 }

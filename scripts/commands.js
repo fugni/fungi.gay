@@ -5,11 +5,6 @@ function neofetch() {
     age = Math.floor(age / 1000 / 60 / 60 / 24 / 365);
     ageDiv.innerText = age + " years old";
 
-    const flags = ["uk", "usa", "canada"];
-
-    const flagDiv = document.getElementsByClassName('english-flag')[document.getElementsByClassName('english-flag').length - 1];
-    flagDiv.src = "assets/flags/" + flags[Math.floor(Math.random() * flags.length)] + ".svg";
-
     const neofetchArt = document.getElementsByClassName('neofetch-art')[document.getElementsByClassName('neofetch-art').length - 1];
 
     fetch("assets/ascii.txt")
