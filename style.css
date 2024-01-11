@@ -101,7 +101,7 @@ body {
 
 .terminal {
     display: flex;
-    margin: var(--font-size) 0;
+    margin-bottom: var(--font-size);
 }
 
 .terminal input {
