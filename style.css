@@ -29,6 +29,7 @@ body {
 
 .neofetch {
     display: flex;
+    margin-bottom: calc(var(--font-size) * -1);
 }
 
 @media screen and (max-width: 602px) {
@@ -43,8 +44,14 @@ body {
     aspect-ratio: 1/1;
     color: var(--accent-text-color1);
     white-space: pre;
+}
 
-    /* background-color: rgb(36, 36, 36); */
+.elephant-art {
+    margin-right: 20px;
+    height: calc(var(--font-size) * 21);
+    aspect-ratio: 1/1;
+    color: var(--accent-text-color1);
+    white-space: pre;
 }
 
 
@@ -121,6 +128,7 @@ body {
 
 .result {
     margin-top: calc(var(--font-size) * -1);
+    margin-bottom: calc(var(--font-size));
 }
 
 .first {
@@ -137,4 +145,8 @@ body {
 
 .flag {
     height: var(--font-size);
+}
+
+.elephant {
+    cursor: pointer;
 }

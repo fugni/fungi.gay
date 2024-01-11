@@ -1,6 +1,6 @@
 // all commands
-const commands = ["help", "neofetch", "clear", "color", "fungi", "wip"];
-const commandText = ["help", "neofetch", "fungi", "wip"];
+const commands = ["help", "neofetch", "clear", "color", "fungi"];
+const commandText = ["help", "neofetch", "fungi"];
 const commandFunctions = ["neofetch", "clear", "color"];
 
 let commandHistory = [];

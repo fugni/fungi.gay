@@ -6,18 +6,43 @@ function neofetch() {
     ageDiv.innerText = age + " years old";
 
     const neofetchArt = document.getElementsByClassName('neofetch-art')[document.getElementsByClassName('neofetch-art').length - 1];
+    const elephantArt = document.getElementsByClassName('elephant-art')[document.getElementsByClassName('elephant-art').length - 1];
+    elephantArt.style.display = "none";
 
     fetch("assets/ascii.txt")
         .then((res) => res.text())
         .then((text) => {
             const lines = text.split('\n');
-            for (let i = 0; i < 21; i++) {
+            for (let i = 0; i < 20; i++) {
                 const neofetchArtRow = document.createTextNode(lines[i] + '\n');
                 neofetchArt.appendChild(neofetchArtRow);
             }
         })
         .catch((e) => console.error(e));
-}
+
+    fetch("assets/elephant.txt")
+        .then((res) => res.text())
+        .then((text) => {
+            const lines = text.split('\n');
+            for (let i = 0; i < 20; i++) {
+                const elephantArtRow = document.createTextNode(lines[i] + '\n');
+                elephantArt.appendChild(elephantArtRow);
+            }
+        })
+        .catch((e) => console.error(e));
+
+
+    const elephant = document.getElementsByClassName('elephant')[document.getElementsByClassName('elephant').length - 1];
+    elephant.addEventListener("click", function() {
+        if (elephantArt.style.display == "none") {
+            elephantArt.style.display = "block";
+            neofetchArt.style.display = "none";
+        } else {
+            elephantArt.style.display = "none";
+            neofetchArt.style.display = "block";
+        }
+    });
+};
 
 // script for clear command 
 function clear() {
