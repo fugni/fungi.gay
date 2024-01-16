@@ -1,3 +1,27 @@
+const neofetchArtColors = ["#dc3343", "#ca2931", "#d73f5b", "#e3d2c7", "#d8bfb5", "#000000"];
+const neofetchArtArray = [
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,3,3,3,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,3,3,3,5,5,5,3,0,0,0,0,0,0],
+    [0,0,0,0,0,3,5,5,5,2,2,2,5,3,0,0,0,0,0],
+    [0,0,0,0,3,5,1,0,0,5,0,3,2,5,3,0,0,0,0],
+    [0,0,0,0,3,5,1,3,0,0,0,0,2,5,3,0,0,0,0],
+    [0,0,0,3,5,1,5,0,0,5,0,0,3,5,3,0,0,0,0],
+    [0,0,0,3,5,1,1,1,5,5,0,5,5,3,0,0,0,0,0],
+    [0,0,0,3,5,1,3,1,3,1,5,4,5,3,0,0,0,0,0],
+    [0,0,0,0,3,5,1,1,1,5,4,3,3,5,3,0,0,0,0],
+    [0,0,0,0,0,3,5,5,5,3,5,4,4,3,5,3,0,0,0],
+    [0,0,0,0,0,0,3,3,3,0,3,5,3,4,5,3,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,3,5,4,5,3,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,3,5,3,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+];
+
 // script for neofetch
 function neofetch() {
     const ageDiv = document.getElementsByClassName('age')[document.getElementsByClassName('age').length - 1];
@@ -9,16 +33,18 @@ function neofetch() {
     const elephantArt = document.getElementsByClassName('elephant-art')[document.getElementsByClassName('elephant-art').length - 1];
     elephantArt.style.display = "none";
 
-    fetch("assets/ascii.txt")
-        .then((res) => res.text())
-        .then((text) => {
-            const lines = text.split('\n');
-            for (let i = 0; i < 20; i++) {
-                const neofetchArtRow = document.createTextNode(lines[i] + '\n');
-                neofetchArt.appendChild(neofetchArtRow);
-            }
-        })
-        .catch((e) => console.error(e));
+    for (let i = 0; i < neofetchArtArray.length; i++) {
+        for (let j = 0; j < neofetchArtArray[i].length; j++) {
+            let color = neofetchArtColors[neofetchArtArray[i][j]];
+            let span = document.createElement("span");
+            span.style.color = color;
+            span.innerText = "██";
+            neofetchArt.appendChild(span);
+        }
+        if (i != neofetchArtArray.length - 1) {
+            neofetchArt.appendChild(document.createElement("br"));
+        }
+    }
 
     fetch("assets/elephant.txt")
         .then((res) => res.text())
@@ -30,7 +56,6 @@ function neofetch() {
             }
         })
         .catch((e) => console.error(e));
-
 
     const elephant = document.getElementsByClassName('elephant')[document.getElementsByClassName('elephant').length - 1];
     elephant.addEventListener("click", function() {

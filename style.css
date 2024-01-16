@@ -7,7 +7,7 @@
 
 @font-face {
     font-family: "IBM VGA";
-    src: url("assets/WebPlus_IBM_VGA_9x16.woff");
+    src: url("assets/WebPlus_IBM_VGA_8x16.woff");
     font-weight: 400;
 }
 
@@ -42,7 +42,6 @@ body {
     margin-right: 20px;
     height: calc(var(--font-size) * 21);
     aspect-ratio: 1/1;
-    color: var(--accent-text-color1);
     white-space: pre;
 }
 
