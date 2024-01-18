@@ -29,6 +29,10 @@ function neofetch() {
     age = Math.floor(age / 1000 / 60 / 60 / 24 / 365);
     ageDiv.innerText = age + " years old";
 
+    if (new Date().getMonth() == 9 && new Date().getDate() == 15) {
+        ageDiv.innerText += " (happy birthday to me)";
+    }
+
     const neofetchArt = document.getElementsByClassName('neofetch-art')[document.getElementsByClassName('neofetch-art').length - 1];
     const elephantArt = document.getElementsByClassName('elephant-art')[document.getElementsByClassName('elephant-art').length - 1];
     elephantArt.style.display = "none";
