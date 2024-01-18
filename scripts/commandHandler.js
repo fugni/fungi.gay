@@ -68,33 +68,35 @@ function commandFunction(commandTemp) {
 
 // script for terminal
 document.addEventListener("keydown", function(e) {
-    const commandInput = document.getElementsByClassName("command-input")[document.getElementsByClassName("command-input").length - 1];
-    
-    // focus on input
-    commandInput.children[commandInput.children.length - 1].focus();
-    // move cursor to end of input
-    commandInput.children[commandInput.children.length - 1].setSelectionRange(commandInput.children[commandInput.children.length - 1].value.length, commandInput.children[commandInput.children.length - 1].value.length);
+    const commandInput = document.getElementsByClassName("command-input")[document.getElementsByClassName("command-input").length - 1].children[this.children.length - 1];
 
+    switch (e.key) {
+        case "Enter":
+            commandFunction(commandInput.value);
+            break;
+        case "ArrowUp":
+            commandInput.value = commandHistory[commandHistoryIndex];
 
-    if (e.key == "Enter") {
-        commandFunction(commandInput.children[commandInput.children.length - 1].value);
-    }
-
-    // command history
-    if (e.key == "ArrowUp") {
-        commandInput.children[commandInput.children.length - 1].value = commandHistory[commandHistoryIndex];
-
-        if (commandHistoryIndex < commandHistory.length - 1) {
-            commandHistoryIndex++;
-        }
-    }
-    if (e.key == "ArrowDown") {
-        if (commandHistoryIndex > 0) {
-            commandHistoryIndex--;
-            commandInput.children[commandInput.children.length - 1].value = commandHistory[commandHistoryIndex];
-        } else {
-            commandInput.children[commandInput.children.length - 1].value = "";
-        }
+            if (commandHistoryIndex < commandHistory.length - 1) {
+                commandHistoryIndex++;
+            }
+            break;
+        case "ArrowDown":
+            if (commandHistoryIndex > 0) {
+                commandHistoryIndex--;
+                commandInput.value = commandHistory[commandHistoryIndex];
+            } else {
+                commandInput.value = "";
+            }
+            break;
+        case "Backspace":
+            break;
+            
+        default:
+            commandInput.focus();
+            // move cursor to end of input
+            commandInput.setSelectionRange(commandInput.value.length, commandInput.value.length);
+            break;
     }
 
 });

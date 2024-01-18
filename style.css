@@ -39,14 +39,12 @@ body {
 }
 
 .neofetch-art {
-    margin-right: 20px;
     height: calc(var(--font-size) * 21);
     aspect-ratio: 1/1;
     white-space: pre;
 }
 
 .elephant-art {
-    margin-right: 20px;
     height: calc(var(--font-size) * 21);
     aspect-ratio: 1/1;
     color: var(--accent-text-color1);
