@@ -31,6 +31,7 @@ function commandFunction(commandTemp) {
     if (commandText.includes(command[0])) {
         const commandHtml = new XMLHttpRequest();
         commandHtml.open("GET", "commands/" + command[0] + ".html", false);
+        commandHtml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         commandHtml.send();
         result.innerHTML += commandHtml.responseText;
         result.innerHTML += "<br>";
