@@ -1,20 +1,21 @@
-// // all commands
-// const commands = ["clear", "color", "fungi", "help", "neofetch", "ls", "cd"];
 // commands that use html
-const commandText = ["fungi", "help", "neofetch"];
+const commandText = ["neofetch"];
 
 let commandHistory = [];
 let commandHistoryIndex = 0;
 
 function commandFunction(commandTemp) {
+    // split command into array
+    let command = commandTemp.toLowerCase().split(" ");
+    // remove empty strings from start of array
+    while (command[0] == "") {
+        command.shift();
+    }
     // dont do anything if input is empty
-    if (commandTemp == "") {
+    if (command == "") {
         return;
     }
 
-    // split input into command and arguments
-    let command = commandTemp.toLowerCase().split(" ");
-    
     // replace old input with span element
     const commandInput = document.getElementsByClassName("command-input")[document.getElementsByClassName("command-input").length - 1];
 
@@ -25,7 +26,7 @@ function commandFunction(commandTemp) {
 
     const container = document.getElementById("container");
     const result = document.createElement("div");
-    result.classList.add("result");    
+    result.classList.add("result");
 
     if (commandText.includes(command[0])) {
         const commandHtml = new XMLHttpRequest();
@@ -33,8 +34,7 @@ function commandFunction(commandTemp) {
         commandHtml.send();
         result.innerHTML += commandHtml.responseText;
         result.innerHTML += "<br>";
-    } 
-    console.log(command[0]);
+    }
 
     // append result to container and add new terminal
     container.appendChild(result);
@@ -57,33 +57,67 @@ function commandFunction(commandTemp) {
         case "cd":
             cd(command);
             break;
-
-        // commands that use html
         case "help":
-        case "fungi":
+            help(command);
             break;
 
-        // command not found
         default:
-            result.innerHTML += "command \"" + command[0] + "\" not found";
+            // check if command is a file
+            if (command[0].endsWith(".txt") || command[0].endsWith(".jpg")) {
+                switch (currentDirectoryPath.length) {
+                    case 0: // root
+                        if (command[0] in fileStructure) {
+                            result.innerHTML += fileStructure[command[0]];
+                            result.innerHTML += "<br>";
+                            break;
+                        } else {
+                            result.innerHTML += "file not found";
+                            result.innerHTML += "<br>";
+                            break;
+                        }
+                    case 1: // 1 directory under root
+                        if (command[0] in fileStructure[currentDirectoryPath[0]]) {
+                            result.innerHTML += fileStructure[currentDirectoryPath[0]][command[0]];
+                            result.innerHTML += "<br>";
+                            break;
+                        } else {
+                            result.innerHTML += "file not found";
+                            result.innerHTML += "<br>";
+                            break;
+                        }
+                    case 2: // 2 directories under root
+                        if (command[0] in fileStructure[currentDirectoryPath[0]][currentDirectoryPath[1]]) {
+                            result.innerHTML += fileStructure[currentDirectoryPath[0]][currentDirectoryPath[1]][command[0]];
+                            result.innerHTML += "<br>";
+                            break;
+                        } else {
+                            result.innerHTML += "file not found";
+                            result.innerHTML += "<br>";
+                            break;
+                        }
+                }
+                break;
+            }
+
+            // command not found
+            result.innerHTML += 'command "' + command[0] + '" not found';
             result.innerHTML += "<br>";
-            result.innerHTML += "type \"help\" for a list of commands";
+            result.innerHTML += 'type "help" for a list of commands';
             result.innerHTML += "<br>";
             break;
-    }    
+    }
 
     newTerminal();
 
     // scroll to bottom
     window.scrollTo(0, document.body.scrollHeight);
 
-
     // add command to history
     commandHistory.unshift(commandTemp);
 }
 
 // script for terminal
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", function (e) {
     const commandInput = document.getElementsByClassName("command-input")[document.getElementsByClassName("command-input").length - 1].children[this.children.length - 1];
 
     switch (e.key) {
@@ -107,13 +141,13 @@ document.addEventListener("keydown", function(e) {
                 commandInput.value = "";
             }
             break;
-        
+
         // dont do anything for these keys
         case "ArrowLeft":
         case "ArrowRight":
         case "Backspace":
             break;
-        
+
         // focus input for all other keys
         default:
             commandInput.focus();
@@ -127,7 +161,7 @@ document.addEventListener("keydown", function(e) {
 function newTerminal() {
     const newTerminal = document.createElement("div");
     newTerminal.classList.add("terminal");
-    newTerminal.innerHTML += "<span class='λ'>λ" + currentDirectory + "&nbsp;</span>";
+    newTerminal.innerHTML += "<span class='λ'>λ" + currentDirectoryString + "&nbsp;</span>";
     newTerminal.innerHTML += "<div class='command-input'><input type='text' autofocus></div>";
     // container should exist when this function is called
     container.appendChild(newTerminal).focus();
