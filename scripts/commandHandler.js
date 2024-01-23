@@ -89,6 +89,8 @@ document.addEventListener("keydown", function(e) {
                 commandInput.value = "";
             }
             break;
+        case "ArrowLeft":
+        case "ArrowRight":
         case "Backspace":
             break;
             
