@@ -21,6 +21,7 @@ const neofetchArtArray = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
+let currentDirectory = "";
 
 // script for neofetch
 function neofetch() {
@@ -83,17 +84,13 @@ function neofetch() {
 function clear() {
     // clear container
     const container = document.getElementById("container");
-    console.log(container);
     container.innerHTML = "";
-
-    // add new terminal
-    newTerminal();
-}
+};
 
 // script for color command
 const colors = {purple: "#ca99ff", blue: "#2196f3", green: "#4caf50", yellow: "#ffeb3b", orange: "#ff9800", red: "#f44336", white: "#ffffff", black: "#000000"}
 function color(color) {
-    const result = document.getElementById("container").children[document.getElementById("container").children.length - 2];
+    const result = document.getElementById("container").children[document.getElementById("container").children.length - 1];
 
     // if no color specified, list colors
     if (!color[1]) {
@@ -118,6 +115,46 @@ function color(color) {
         result.innerHTML += "type \"color\" for a list of colors";
         result.innerHTML += "<br>";
     }
+};
 
-    resultContainer.appendChild(result);
+// script for ls command
+function ls() {
+    const result = document.getElementById("container").children[document.getElementById("container").children.length - 1];
+    
+    if (!currentDirectory == "") {
+        for (let i = 0; i < Object.keys(fileStructure[currentDirectory]).length; i++) {
+            result.innerHTML += "-" + Object.keys(fileStructure[currentDirectory])[i];
+            result.innerHTML += "<br>";
+        }
+
+    } else {
+        for (let i = 0; i < Object.keys(fileStructure).length; i++) {
+            result.innerHTML += "-" + Object.keys(fileStructure)[i];
+            result.innerHTML += "<br>";
+        }
+    }    
+};
+
+// script for cd command
+function cd(directory) {
+    const result = document.getElementById("container").children[document.getElementById("container").children.length - 1];
+ 
+    if (!directory[1]) {
+        result.innerHTML += "directory: <span class=\"λ\"> λ" + currentDirectory + "</span>";
+    }
+
+    console.log(directory[1]);
+    const directoryPath = directory[1];
+    console.log(directoryPath);
+
+
+
+
+
+    // if (directory[1] == ".." || directory[1] == "../") {
+    //     console.log(currentDirectory);
+    //     currentDirectory = "";
+    //     result.innerHTML += "directory changed to root";
+    //     result.innerHTML += "<br>";
+    // }
 }

@@ -1,5 +1,5 @@
-// all commands
-const commands = ["clear", "color", "fungi", "help", "neofetch"];
+// // all commands
+// const commands = ["clear", "color", "fungi", "help", "neofetch", "ls", "cd"];
 // commands that use html
 const commandText = ["fungi", "help", "neofetch"];
 
@@ -27,43 +27,56 @@ function commandFunction(commandTemp) {
     const result = document.createElement("div");
     result.classList.add("result");    
 
-    // check if command exists or uses html
-    if (!commands.includes(command[0])) {
-        result.innerHTML += "command \"" + command[0] + "\" not found";
-        result.innerHTML += "<br>";
-        result.innerHTML += "type \"help\" for a list of commands";
-        result.innerHTML += "<br>";
-    } else if (commandText.includes(command[0])) {
+    if (commandText.includes(command[0])) {
         const commandHtml = new XMLHttpRequest();
         commandHtml.open("GET", "commands/" + command[0] + ".html", false);
         commandHtml.send();
         result.innerHTML += commandHtml.responseText;
         result.innerHTML += "<br>";
-    }
+    } 
+    console.log(command[0]);
 
     // append result to container and add new terminal
     container.appendChild(result);
+
+    // execute command and pass arguments
+    switch (command[0]) {
+        case "clear":
+        case "cls":
+            clear(command);
+            break;
+        case "color":
+            color(command);
+            break;
+        case "neofetch":
+            neofetch(command);
+            break;
+        case "ls":
+            ls(command);
+            break;
+        case "cd":
+            cd(command);
+            break;
+
+        // commands that use html
+        case "help":
+        case "fungi":
+            break;
+
+        // command not found
+        default:
+            result.innerHTML += "command \"" + command[0] + "\" not found";
+            result.innerHTML += "<br>";
+            result.innerHTML += "type \"help\" for a list of commands";
+            result.innerHTML += "<br>";
+            break;
+    }    
 
     newTerminal();
 
     // scroll to bottom
     window.scrollTo(0, document.body.scrollHeight);
 
-    // execute command and pass arguments
-    switch (command[0]) {
-        case "clear":
-            clear(command);
-            break;
-        case "color":
-            color(command);
-            break;
-        case "help":
-            help(command);
-            break;
-        case "neofetch":
-            neofetch(command);
-            break;
-    }
 
     // add command to history
     commandHistory.unshift(commandTemp);
@@ -114,7 +127,7 @@ document.addEventListener("keydown", function(e) {
 function newTerminal() {
     const newTerminal = document.createElement("div");
     newTerminal.classList.add("terminal");
-    newTerminal.innerHTML += "<span class='λ'>λ&nbsp;</span>";
+    newTerminal.innerHTML += "<span class='λ'>λ" + currentDirectory + "&nbsp;</span>";
     newTerminal.innerHTML += "<div class='command-input'><input type='text' autofocus></div>";
     // container should exist when this function is called
     container.appendChild(newTerminal).focus();
