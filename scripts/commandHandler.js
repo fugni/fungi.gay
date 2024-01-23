@@ -119,12 +119,3 @@ function newTerminal() {
     // container should exist when this function is called
     container.appendChild(newTerminal).focus();
 }
-
-function htmlCommand(command) {
-    const commandHtml = new XMLHttpRequest();
-    commandHtml.open("GET", "commands/" + command + ".html", false);
-    commandHtml.send();
-    // result should exist when this function is called
-    result.innerHTML += commandHtml.responseText;
-    result.innerHTML += "<br>";
-}
