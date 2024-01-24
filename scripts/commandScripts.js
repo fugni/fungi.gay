@@ -178,12 +178,7 @@ function cd(directory) {
         ];
     console.log(directory);
 
-    // if directory ends with .txt, display error message
-    if (directory[1] && directory[1].endsWith(".txt") || directory[1].endsWith(".jpg")) {
-        result.innerHTML += directory[1] + " is a file, not a directory";
-        result.innerHTML += "<br>";
-        return;
-    }
+
 
     switch (directory[1]) {
         // if no directory specified, display current directory
@@ -203,6 +198,13 @@ function cd(directory) {
 
         // if directory isn't in file structure, display error message
         default:
+            // if directory ends with .txt, display error message
+            if (directory[1] && directory[1].endsWith(".txt") || directory[1].endsWith(".jpg")) {
+                result.innerHTML += directory[1] + " is a file, not a directory";
+                result.innerHTML += "<br>";
+                return;
+            }
+            
             switch (currentDirectoryPath.length) {
                 case 0: // root
                     if (!fileStructure[directory[1]]) {

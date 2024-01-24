@@ -85,6 +85,7 @@ body {
 .terminal {
     display: flex;
     margin-bottom: var(--font-size);
+    overflow-x: hidden;
 }
 
 .terminal input {
@@ -105,6 +106,7 @@ body {
 .result {
     margin-top: calc(var(--font-size) * -1);
     margin-bottom: calc(var(--font-size));
+    overflow-x: hidden;
 }
 
 /* flags made with box shadow */
