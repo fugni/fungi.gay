@@ -1,3 +1,8 @@
+fetch("https://letterboxd.com/flungi/rss/")
+    .then((response) => response.text())
+    .then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
+    .then((data) => {return movieData = data;});
+
 const neofetchArtColors = [
     "#dc3343",
     "#ca2931",
@@ -105,6 +110,7 @@ const colors = {
     white: "#ffffff",
     black: "#000000",
 };
+
 function color(color) {
     const result = document.getElementById("container").children[document.getElementById("container").children.length - 1];
 
@@ -132,6 +138,7 @@ function color(color) {
         result.innerHTML += "<br>";
     }
 }
+
 // commands and their descriptions
 const commandsHelp = {"help": "display this help message", "clear, cls": "clear the screen" , "color": "change the accent color", "neofetch": "display neofetch", "ls": "list directories", "cd": "change directory"};
 
@@ -149,10 +156,7 @@ function help() {
 
 // script for ls command
 function ls() {
-    const result =
-        document.getElementById("container").children[
-        document.getElementById("container").children.length - 1
-        ];
+    const result = document.getElementById("container").children[document.getElementById("container").children.length - 1];
 
     switch (currentDirectoryPath.length) {
         case 0: // root
@@ -172,13 +176,7 @@ function ls() {
 
 // script for cd command
 function cd(directory) {
-    const result =
-        document.getElementById("container").children[
-        document.getElementById("container").children.length - 1
-        ];
-    console.log(directory);
-
-
+    const result = document.getElementById("container").children[document.getElementById("container").children.length - 1];
 
     switch (directory[1]) {
         // if no directory specified, display current directory
@@ -248,3 +246,18 @@ function cd(directory) {
             }
     }
 }
+
+function movie() {
+    const result = document.getElementById("container").children[document.getElementById("container").children.length - 1];
+    
+    result.innerHTML += "my last watched movie:<br>"
+
+    const lastMovie = movieData.querySelectorAll("item")[0];
+    console.log(lastMovie);
+
+    let movieTitle = lastMovie.querySelector("title").innerHTML;
+
+    result.innerHTML += movieTitle;
+
+}
+

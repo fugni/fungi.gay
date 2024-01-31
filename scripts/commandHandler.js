@@ -53,6 +53,8 @@ function commandFunction(commandTemp) {
             neofetch(command);
             break;
         case "ls":
+        case "list":
+        case "dir":
             ls(command);
             break;
         case "cd":
@@ -60,6 +62,9 @@ function commandFunction(commandTemp) {
             break;
         case "help":
             help(command);
+            break;
+        case "movie":
+            movie(command);
             break;
 
         default:
