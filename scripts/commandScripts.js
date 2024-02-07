@@ -277,6 +277,8 @@ function movie() {
     let movieYear = title.split(" - ")[0].substring(title.split(" - ")[0].length - 4, title.split(" - ")[0].length)
     let movieRating = title.split(" - ")[1]
 
+
+    // description contains the movie's poster and review
     let movieImage = lastMovie.querySelector("description").innerHTML;
     movieImage = movieImage.substring(movieImage.indexOf("src=\"") + 5, movieImage.indexOf("\"/>"));
 
