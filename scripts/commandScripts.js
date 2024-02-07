@@ -1,8 +1,10 @@
+// fetch movie data from letterboxd rss feed
 fetch("https://letterboxd.com/flungi/rss/")
     .then((response) => response.text())
     .then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
     .then((data) => {return movieData = data;});
 
+// colors used in neofetch art
 const neofetchArtColors = [
     "#dc3343",
     "#ca2931",
@@ -12,6 +14,7 @@ const neofetchArtColors = [
     "#000000",
 ];
 
+// array of neofetch art
 const neofetchArtArray = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -99,18 +102,19 @@ function clear() {
     container.innerHTML = "";
 }
 
-// script for color command
+// preset colors for color command
 const colors = {
     purple: "#ca99ff",
-    blue: "#2196f3",
-    green: "#4caf50",
+    blue:   "#2196f3",
+    green:  "#4caf50",
     yellow: "#ffeb3b",
     orange: "#ff9800",
-    red: "#f44336",
-    white: "#ffffff",
-    black: "#000000",
+    red:    "#f44336",
+    white:  "#ffffff",
+    black:  "#000000",
 };
 
+// script for color command
 function color(color) {
     const result = document.getElementById("container").children[document.getElementById("container").children.length - 1];
 
@@ -121,15 +125,21 @@ function color(color) {
         result.innerHTML += '<span style="color: #ca99ff">purple</span>, <span style="color: #2196f3">blue</span>, <span style="color: #4caf50">green</span>, <span style="color: #ffeb3b">yellow</span>, <span style="color: #ff9800">orange</span>, <span style="color: #f44336">red</span>, <span style="color: #ffffff">white</span>, <span style="color: #000000; background-color: #ffffff; padding: 0 3px;">black</span>';
     // if color is in list, change color
     } else if (colors[color[1]]) {
-        document.documentElement.style.cssText = "--accent-text-color1: " + colors[color[1]];
-        result.innerHTML += "color changed to <span style=color:" + colors[color[1]] + ";>" + color[1] + "</span>";
-        if (color[1] == "black") {
-            result.innerHTML += "<br>good look reading hehe<br>";
+        // if color is white or black, change light/dark mode, otherwise change accent color
+        if (color[1] == "white") {
+            document.documentElement.style.cssText = "--background-color: #ffffff; --text-color: #000000;";
+        } else if (color[1] == "black") {
+            document.documentElement.style.cssText = "--background-color: #0f0f0f; --text-color: #ffffff;";
+        } else {
+            document.documentElement.style.cssText = "--accent-text-color1: " + colors[color[1]];
+            result.innerHTML += "color changed to <span style=color:" + colors[color[1]] + ";>" + color[1] + "</span>";
         }
+
     // if color is hex code, change color
     } else if (/^#[0-9A-F]{6}$/i.test(color[1])) {
         document.documentElement.style.cssText = "--accent-text-color1: " + color[1];
         result.innerHTML +=  "color changed to <span style=color:" + color[1] + ";>" + color[1] + "</span>";
+
     // if color isn't in list, or a hex code, display error message
     } else {
         result.innerHTML += 'color: "' + color[1] + '" not found';
@@ -139,17 +149,23 @@ function color(color) {
     }
 }
 
-// commands and their descriptions
-const commandsHelp = {"help": "display this help message", "clear, cls": "clear the screen" , "color": "change the accent color", "neofetch": "display neofetch", "ls": "list directories", "cd": "change directory"};
+// commands and their descriptions for help command
+const commandsHelp = {"help": "display this help message",
+                      "clear, cls": "clear the screen", 
+                      "color": "change the accent color", 
+                      "neofetch": "display neofetch", 
+                      "dir, ls, list": "list directories", 
+                      "cd": "change directory"};
 
 // script for help command
 function help() {
     const result = document.getElementById("container").children[document.getElementById("container").children.length - 1];
-    // all commands and their descriptions
+
     for (let command in commandsHelp) {
         result.innerHTML += "<span class='accents'>" + command + "</span> - " + commandsHelp[command];
         result.innerHTML += "<br>";
     }
+
     result.innerHTML += "open files by typing their name";
     result.innerHTML += "<br>";
 }
@@ -253,11 +269,33 @@ function movie() {
     result.innerHTML += "my last watched movie:<br>"
 
     const lastMovie = movieData.querySelectorAll("item")[0];
-    console.log(lastMovie);
 
-    let movieTitle = lastMovie.querySelector("title").innerHTML;
+    let title = lastMovie.querySelector("title").innerHTML;
 
-    result.innerHTML += movieTitle;
+    // title is in the format "movie, title year - rating"
+    let movieTitle = title.split(" - ")[0].substring(0, title.split(" - ")[0].length - 6)
+    let movieYear = title.split(" - ")[0].substring(title.split(" - ")[0].length - 4, title.split(" - ")[0].length)
+    let movieRating = title.split(" - ")[1]
 
+    let movieImage = lastMovie.querySelector("description").innerHTML;
+    movieImage = movieImage.substring(movieImage.indexOf("src=\"") + 5, movieImage.indexOf("\"/>"));
+
+    let movieReview = lastMovie.querySelector("description").innerHTML;
+    movieReview = movieReview.split("<p>")[2];
+    movieReview = movieReview.substring(0, movieReview.indexOf("</p>"));
+
+    // if no review was left, letterboxd leaves a "Watched on" message, which I don't want to display
+    if (movieReview.includes("Watched on")) {
+        movieReview = "";
+    }
+
+    result.innerHTML += "<div class=\"movie\">" +
+                            "<img src=\"" + movieImage + "\" alt=\"" + movieTitle + "'s poster\">" +
+                            "<div class=\"movie-txt\">" +
+                                "<span>" + movieTitle + " (" + movieYear + ")</span>" + 
+                                "<span class=\"movie-rating\">" + movieRating + "</span>" +
+                                "<span class=\"movie-review\">" + movieReview + "</span>" +
+                            "</div>" +
+                        "</div>";
 }
 

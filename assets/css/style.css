@@ -146,3 +146,22 @@ body {
 .elephant {
     cursor: pointer;
 }
+
+.movie {
+    display: flex;
+}
+
+.movie img {
+    height: 200px;
+    width: max-content;
+    margin-right: 10px;
+}
+
+.movie .movie-txt {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie .movie-rating {
+    margin-bottom: var(--font-size);
+}
