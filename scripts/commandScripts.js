@@ -153,7 +153,8 @@ function color(color) {
 const commandsHelp = {"help": "display this help message",
                       "clear, cls": "clear the screen", 
                       "color": "change the accent color", 
-                      "neofetch": "display neofetch", 
+                      "neofetch": "display neofetch",
+                      "movie": "display my last watched movie",
                       "dir, ls, list": "list directories", 
                       "cd": "change directory"};
 
