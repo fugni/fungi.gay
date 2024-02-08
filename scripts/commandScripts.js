@@ -122,7 +122,7 @@ function color(color) {
     if (!color[1]) {
         result.innerText += "color: pick a color from the list below, or use a hex code";
         result.innerHTML += "<br>";
-        result.innerHTML += '<span style="color: #ca99ff">purple</span>, <span style="color: #2196f3">blue</span>, <span style="color: #4caf50">green</span>, <span style="color: #ffeb3b">yellow</span>, <span style="color: #ff9800">orange</span>, <span style="color: #f44336">red</span>, <span style="color: #ffffff">white</span>, <span style="color: #000000; background-color: #ffffff; padding: 0 3px;">black</span>';
+        result.innerHTML += '<span style="color: #ca99ff">purple</span>, <span style="color: #2196f3">blue</span>, <span style="color: #4caf50">green</span>, <span style="color: #ffeb3b">yellow</span>, <span style="color: #ff9800">orange</span>, <span style="color: #f44336">red</span>, <span style="color: #ffffff; background-color: #000000; padding: 0 3px;">white</span>, <span style="color: #000000; background-color: #ffffff; padding: 0 3px;">black</span>';
     // if color is in list, change color
     } else if (colors[color[1]]) {
         // if color is white or black, change light/dark mode, otherwise change accent color
