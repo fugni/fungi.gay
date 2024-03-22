@@ -126,7 +126,7 @@ function commandFunction(commandTemp) {
 document.addEventListener("keydown", function (e) {
     const commandInput = document.getElementsByClassName("command-input")[document.getElementsByClassName("command-input").length - 1].children[this.children.length - 1];
 
-    // input isnt focused focus on input 
+    // if input isnt focused focus on input 
     if (commandInput !== document.activeElement || commandInput.value == "") {
         commandInput.focus();
     } else {
