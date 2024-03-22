@@ -126,40 +126,39 @@ function commandFunction(commandTemp) {
 document.addEventListener("keydown", function (e) {
     const commandInput = document.getElementsByClassName("command-input")[document.getElementsByClassName("command-input").length - 1].children[this.children.length - 1];
 
-    switch (e.key) {
-        // execute command on enter
-        case "Enter":
-            commandFunction(commandInput.value);
-            break;
-
-        // cycle through command history
-        case "ArrowUp":
-            commandInput.value = commandHistory[commandHistoryIndex];
-            if (commandHistoryIndex < commandHistory.length - 1) {
-                commandHistoryIndex++;
-            }
-            break;
-        case "ArrowDown":
-            if (commandHistoryIndex > 0) {
-                commandHistoryIndex--;
+    // input isnt focused focus on input 
+    if (commandInput !== document.activeElement || commandInput.value == "") {
+        commandInput.focus();
+    } else {
+        switch (e.key) {
+            // execute command on enter
+            case "Enter":
+                commandFunction(commandInput.value);
+                break;
+    
+            // cycle through command history
+            case "ArrowUp":
                 commandInput.value = commandHistory[commandHistoryIndex];
-            } else {
-                commandInput.value = "";
-            }
-            break;
-
-        // dont do anything for these keys
-        case "ArrowLeft":
-        case "ArrowRight":
-        case "Backspace":
-            break;
-
-        // focus input for all other keys
-        default:
-            commandInput.focus();
-            // move cursor to end of input
-            commandInput.setSelectionRange(commandInput.value.length, commandInput.value.length);
-            break;
+                if (commandHistoryIndex < commandHistory.length - 1) {
+                    commandHistoryIndex++;
+                }
+                break;
+            case "ArrowDown":
+                if (commandHistoryIndex > 0) {
+                    commandHistoryIndex--;
+                    commandInput.value = commandHistory[commandHistoryIndex];
+                } else {
+                    commandInput.value = "";
+                }
+                break;
+    
+            // focus input for all other keys
+            default:
+                commandInput.focus();
+                // move cursor to end of input
+                commandInput.setSelectionRange(commandInput.value.length, commandInput.value.length);
+                break;
+        }
     }
 });
 
