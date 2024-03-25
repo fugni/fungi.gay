@@ -63,9 +63,9 @@ function commandFunction(commandTemp) {
         case "help":
             help(command);
             break;
-        case "movie":
-            movie(command);
-            break;
+        // case "movie":
+        //     movie(command);
+        //     break;
 
         default:
             // check if command is a file
