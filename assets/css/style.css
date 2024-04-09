@@ -165,3 +165,27 @@ body {
 .movie .movie-rating {
     margin-bottom: var(--font-size);
 }
+
+.project {
+    display: flex;
+}
+
+.project span {
+    max-width: 60%;
+}
+
+.project-side {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    padding-right: 16px;
+}
+
+.project-side img {
+    width: 100%;
+    margin-right: 10px;
+}
+
+.timestampgi {
+    margin: var(--font-size) 0;
+}

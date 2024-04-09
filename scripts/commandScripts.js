@@ -1,8 +1,9 @@
+// cors doesn't allow me to fetch the rss feed from letterboxd, so i'd need a backend to fetch it for me
 // fetch movie data from letterboxd rss feed
-fetch("https://letterboxd.com/flungi/rss/")
-    .then((response) => response.text())
-    .then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
-    .then((data) => {return movieData = data;});
+// fetch("https://letterboxd.com/flungi/rss/")
+//     .then((response) => response.text())
+//     .then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
+//     .then((data) => {return movieData = data;});
 
 // colors used in neofetch art
 const neofetchArtColors = [
@@ -219,7 +220,7 @@ function cd(directory) {
                 result.innerHTML += "<br>";
                 return;
             }
-            
+
             switch (currentDirectoryPath.length) {
                 case 0: // root
                     if (!fileStructure[directory[1]]) {
@@ -264,6 +265,7 @@ function cd(directory) {
     }
 }
 
+// unused movie command because i'd need a backend to fetch the rss feed
 function movie() {
     const result = document.getElementById("container").children[document.getElementById("container").children.length - 1];
     

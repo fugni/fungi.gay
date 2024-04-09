@@ -127,7 +127,7 @@ document.addEventListener("keydown", function (e) {
     const commandInput = document.getElementsByClassName("command-input")[document.getElementsByClassName("command-input").length - 1].children[this.children.length - 1];
 
     // if input isnt focused focus on input 
-    if (commandInput !== document.activeElement || commandInput.value == "") {
+    if (commandInput !== document.activeElement) {
         commandInput.focus();
     } else {
         switch (e.key) {
@@ -171,3 +171,11 @@ function newTerminal() {
     // container should exist when this function is called
     container.appendChild(newTerminal).focus();
 }
+
+// timestamp update
+setInterval(function () {
+    const timestamp = document.getElementsByClassName("timestampgi");
+    for (let i = 0; i < timestamp.length; i++) {
+        timestamp[i].innerHTML = Math.floor(Date.now() / 1000) - 1707992306;
+    }
+}, 1000);
