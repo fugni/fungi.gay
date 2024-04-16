@@ -14,14 +14,15 @@ const fileStructure = {
                                 "</div>" +
                                 "<span><br>This is my portfolio, it's made entirely in vanilla JavaScript (and HTML & CSS). I made a command handler that runs every time you enter a command into the terminal, which checks what you entered, and then runs the corresponding command's script. If I were to work more on this project, I would add a backend using either PHP, or Node.js. I also need to work on making it more responsive.</span>" +
                             "</div>",
-        "raycaster.txt": "<div class=\"project\">" +
+                            
+        "raycaster.txt": "<a href=\"https://raycaster.fungi.gay\" target=\"_blank\" class=\"link\">https://<span>raycaster</span>.fungi.gay</a>" +
+                        "<div class=\"project\">" +
                             "<div class=\"project-side\">" +
                                 "<a href=\"https://raycaster.fungi.gay\" target=\"_blank\">" +
-                                    "<span>raycaster</span>" +
-                                    "<img src=\"/assets/img/projects/raycaster.png\" alt=\"picture of raycaster\"></a>" +
-                                "<a href=\"https://github.com/fugni/raycaster\" target=\"_blank\">github</a>" +
+                                    "<img src=\"/assets/img/projects/raycaster.png\" alt=\"picture of raycaster\">" + 
+                                "</a>" +
                             "</div>" +
-                            "<span><br>A simple raycaster I made in vanilla JavaScript.</span>" +
+                            "<span>A simple raycaster I made in vanilla JavaScript. <br><a href=\"https://github.com/fugni/raycaster\" target=\"_blank\">github</a></span>" +
                         "</div>",
         "timestamp.txt": "<div class=\"project\">" +
                             "<div class=\"project-side\">" +
