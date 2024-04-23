@@ -111,6 +111,7 @@ const colors = {
     yellow: "#ffeb3b",
     orange: "#ff9800",
     red:    "#f44336",
+    pink:   "#ff4081",
     white:  "#ffffff",
     black:  "#000000",
 };

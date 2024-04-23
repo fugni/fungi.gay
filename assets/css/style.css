@@ -23,6 +23,7 @@ body {
     background-color: var(--background-color);
 }
 
+/* i know λ isnt a good class name but it sure is funny */
 .λ, .accents {
     color: var(--accent-text-color1);
 }
@@ -195,5 +196,5 @@ body {
 }
 
 .timestampgi {
-    margin: var(--font-size) 0;
+    margin-left: 16px;
 }
